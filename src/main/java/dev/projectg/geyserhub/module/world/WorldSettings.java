@@ -2,6 +2,7 @@ package dev.projectg.geyserhub.module.world;
 
 import dev.projectg.geyserhub.GeyserHubMain;
 import dev.projectg.geyserhub.config.ConfigId;
+import dev.projectg.geyserhub.module.tablist.TabListSetup;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -15,6 +16,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -152,5 +154,14 @@ public class WorldSettings implements Listener {
 
             }
         });
+    }
+    @EventHandler
+    public void onJoin(PlayerJoinEvent e){
+        FileConfiguration config = GeyserHubMain.getInstance().getConfigManager().getFileConfiguration(ConfigId.MAIN);
+        Player getPlayer = e.getPlayer();
+        if (!config.getBoolean("TabList.Enable",false)) {
+            return;
+        }
+        new TabListSetup().enableTablist(getPlayer);
     }
 }

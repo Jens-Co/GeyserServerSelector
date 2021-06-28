@@ -39,6 +39,14 @@ Scoreboard:
     - "&f&f+----------------------+"
     - "&a  *  &6https://projectg.dev  &a*"
 
+TabList:
+  Enable: True
+  Header:
+    - "&3Your Server Name Here"
+    - "Plugin provided by ProjectG"
+  Footer:
+    - "&fYour Server Website link here"
+    - "Your Current Ping: &2%player_ping%"
 
 Broadcasts:
   Enable: true
